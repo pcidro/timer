@@ -8,7 +8,7 @@ const seconds = document.getElementById("seconds");
 
 iniciar.addEventListener("click", iniciateTime);
 pausar.addEventListener("click", pauseTime);
-pausar.addEventListener("dblclick", resetTime);
+resetar.addEventListener("click", resetTime);
 
 let i = 0;
 let time;
@@ -21,8 +21,18 @@ function iniciateTime() {
     seconds.innerText = sec;
     i++;
   }, 1000);
+  iniciar.setAttribute("disabled", "");
 }
 
-function pauseTime() {}
+function pauseTime() {
+  clearInterval(time);
+  iniciar.removeAttribute("disabled");
+}
 
-function resetTime() {}
+function resetTime() {
+  clearInterval(time);
+  i = 0;
+  minutes.innerText = "00";
+  seconds.innerText = "00";
+  iniciar.removeAttribute("disabled");
+}
